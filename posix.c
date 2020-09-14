@@ -26,7 +26,7 @@ void *piCalculationThreads(void *args){
     }
     result = result * 4;
 
-    resultado += resultado + result;
+    resultado = resultado + result;
     printf("resultado %f para thread %d\n",result,nthread);
 
 }

@@ -92,7 +92,7 @@ int threadFunction(void *args)
     }
     result = result * 4;
 
-    global += global + result;
+    global = global + result;
     printf("resultado %f para thread %d\n", result, nthread);
     printf("Global: %f\n", global);
 
