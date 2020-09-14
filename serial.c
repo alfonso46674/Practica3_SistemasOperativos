@@ -5,11 +5,12 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <math.h>
-#define ITERATIONSPI 2000000000
+#define ITERATIONSPI 2000000000 // total de iteraciones a hacer para calcular PI
 
 double piCalculation();
 
 int main(){
+    //variables para manejar el tiempo
     long long start_ts;
     long long stop_ts;
     long long elapsedTime;
@@ -19,6 +20,7 @@ int main(){
     gettimeofday(&ts, NULL);
     start_ts = ts.tv_sec; //Tiempo inicial
     
+    //calcular PI
      double piResult = piCalculation();
 
     gettimeofday(&ts, NULL);
@@ -33,9 +35,9 @@ int main(){
  double piCalculation(){
      double result=0;
     for(long i = 0; i < ITERATIONSPI; i++ ){
-        result +=  ((pow(-1,i))/((2*i)+1));
+        result +=  ((pow(-1,i))/((2*i)+1)); // formula que fue proporcionada para calcular PI/4
     }
-    result = result * 4;
+    result = result * 4; // Dividir el resultado entre 4 para obtener PI
 
     return result;
 }

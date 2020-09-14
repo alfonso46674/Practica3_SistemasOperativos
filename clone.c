@@ -12,13 +12,12 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#define ITERATIONSPI 2000000000
+#define ITERATIONSPI 2000000
 #define PROCESOS 4
-#define STACK 1024 * 64
+#define STACK 1024 * 64 // stack
 
-double global = 0;
+double global = 0; // variable global para los hilos
 
-double piCalculation();
 int threadFunction();
 
 int main()
@@ -34,7 +33,7 @@ int main()
     long lElapsedTime;
     struct timeval ts;
 
-    stack = malloc(STACK * PROCESOS);
+    stack = malloc(STACK * PROCESOS); // asignar espacio para el stack
 
     gettimeofday(&ts, NULL);
     start_ts = ts.tv_sec; //Tiempo inicial
@@ -45,6 +44,7 @@ int main()
         exit(1);
     }
 
+    //crear los hilos con clone()
     for (i = 0; i < PROCESOS; i++)
     {
         params[i] = i;
@@ -56,9 +56,10 @@ int main()
             perror("clone");
             exit(2);
         }
-        usleep(1000);
+        usleep(1000); // darle tiempo para que no haya errores al momento de hacer los clones()
     }
 
+    // esperar que terminen los hilos
     for (i = 0; i < PROCESOS; i++)
     {
         pid = wait(&status);
@@ -93,7 +94,7 @@ int threadFunction(void *args)
     result = result * 4;
 
     global = global + result;
-    printf("resultado %f para thread %d\n", result, nthread);
-    printf("Global: %f\n", global);
+   // printf("resultado %f para thread %d\n", result, nthread);
+   // printf("Global: %f\n", global);
 
 }

@@ -10,24 +10,25 @@
 #define ITERATIONSPI 2000000000
 #define NTHREADS 4
 
-double resultado = 0;
+double resultado = 0; // variable global para los 4 hilos
 
 double piCalculation();
 
 void *piCalculationThreads(void *args){
     int nthread = *((int *)args);
 
+    //Sacar los rangos de inicio y fin para cada hilo basandose en su ID, numero de hilos y las iteraciones totales
     int inicio = nthread * (ITERATIONSPI/NTHREADS);
     int final = (nthread+1) * (ITERATIONSPI/NTHREADS);
 
-    double result=0;
+    double result=0;// variable local para almacenar el resultado de un hilo
     for(long i = inicio; i < final; i++ ){
         result +=  ((pow(-1,i))/((2*i)+1));
     }
     result = result * 4;
 
-    resultado = resultado + result;
-    printf("resultado %f para thread %d\n",result,nthread);
+    resultado = resultado + result; // guardar el resultado local en la variable global
+   // printf("resultado %f para thread %d\n",result,nthread);
 
 }
 
@@ -72,14 +73,4 @@ int main(){
     printf("----------------------\n");
     printf("Tiempo total, %lld segundos\n", elapsedTime);
     printf("Resultado, %f\n", resultado);
-}
-
- double piCalculation(){
-     double result=0;
-    for(long i = 0; i < ITERATIONSPI; i++ ){
-        result +=  ((pow(-1,i))/((2*i)+1));
-    }
-    result = result * 4;
-
-    return result;
 }
