@@ -43,9 +43,7 @@ int main(){
     //Variables para hilos
     pthread_t tid[NTHREADS];
     int args [NTHREADS];
-    
-
-
+  
     gettimeofday(&ts, NULL);
     start_ts = ts.tv_sec; //Tiempo inicial
     
