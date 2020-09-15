@@ -1,4 +1,4 @@
-all: serial posix clone
+all: serial posix clone parallel
 
 serial: serial.c
 	gcc -o serial serial.c -lm
@@ -9,5 +9,8 @@ posix: posix.c
 clone: clone.c
 	gcc -o clone clone.c -lm 
 
+parallel: parallel.c
+	gcc -o parallel parallel.c -lm
+
 clean:
-	rm serial posix clone
+	rm serial posix clone parallel

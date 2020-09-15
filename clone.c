@@ -12,7 +12,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#define ITERATIONSPI 2000000
+#define ITERATIONSPI 2000000000
 #define PROCESOS 4
 #define STACK 1024 * 64 // stack
 
